@@ -1,5 +1,4 @@
 import os
-
 def rename_images(directory_path, keyword):
     # Vérifier si le chemin est un dossier
     if not os.path.isdir(directory_path):
@@ -28,6 +27,7 @@ def rename_images(directory_path, keyword):
             # Incrémenter le compteur
             i += 1
             
-emotion = "angry"
+emotion = "crying"
 directory_path = "image_project/" + emotion
+rename_images(directory_path, "intermediate_" + emotion + "_")
 rename_images(directory_path, emotion)
