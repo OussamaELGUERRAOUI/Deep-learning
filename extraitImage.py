@@ -42,7 +42,8 @@ def download_images(search_term, num_images, output_folder):
     driver.quit()
 
 # Termes de recherche et nombre d'images à télécharger
-search_terms = ["personne qui pleure", "face pleurent","person crying"]
+#search_terms = ["personne qui pleure", "face pleurent"]
+
 num_images_per_term = 1000
 output_directory = "image"
 
