@@ -43,6 +43,9 @@ def download_images(search_term, num_images, output_folder):
 
 # Termes de recherche et nombre d'images à télécharger
 #search_terms = ["personne qui pleure", "face pleurent"]
+#search_terms = ["personne en colère", "face en colère","angry"]
+#search_terms = ["deguisted","dégouté","humain dégouté"]
+search_terms = ["fear face","face peur","peur"]
 
 num_images_per_term = 1000
 output_directory = "image"
