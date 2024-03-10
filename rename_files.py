@@ -27,7 +27,7 @@ def rename_images(directory_path, keyword):
             # Incrémenter le compteur
             i += 1
             
-emotion = "sad"
+emotion = "angry"
 directory_path = "image_project/" + emotion
 rename_images(directory_path, "intermediate_" + emotion + "_")
 rename_images(directory_path, emotion)
