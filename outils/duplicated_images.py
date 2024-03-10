@@ -2,7 +2,7 @@ import os
 import hashlib
 from collections import defaultdict
 
-directory_path = "image_project/sad"
+directory_path = "/data/train/angry"
 
 def hash_file(filename):
     hasher = hashlib.sha256()
