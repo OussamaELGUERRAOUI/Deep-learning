@@ -1,11 +1,16 @@
 from keras.applications import VGG19
 from keras.models import Model
 from keras.layers import Dense, GlobalAveragePooling2D
+import tensorflow
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras import optimizers
 from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.layers import Dense, Flatten
 
 
-def create_model_simple(image_size = 64):
+
+def create_model_simple(image_size = 64, num_classes=6):
     
     model = Sequential()
     
@@ -24,9 +29,9 @@ def create_model_simple(image_size = 64):
     model.add(Flatten())
    
     model.add(Dense(512, activation='relu')) 
-    model.add(Dense(6, activation="softmax"))  # 6 classes d'émotions différentes
+    model.add(Dense(num_classes, activation="softmax"))  # 6 classes d'émotions différentes
     
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+   
     
     return model
     
@@ -55,7 +60,7 @@ def create_model_vgg19(image_size = 64):
 
 # Création du modèle simple
 
-model = create_model_simple()
+#model = create_model_simple()
 
 # Affichage de la structure du modèle
-model.summary()
+#model.summary()
