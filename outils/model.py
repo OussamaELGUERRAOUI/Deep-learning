@@ -1,15 +1,9 @@
-from keras.applications import VGG19
-from keras.models import Model
-from keras.layers import Dense, GlobalAveragePooling2D
-import tensorflow
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPooling2D, GlobalAveragePooling2D
 from tensorflow.keras import optimizers
-from tensorflow.keras.layers import Conv2D, MaxPooling2D
-from tensorflow.keras.layers import Dense, Flatten
 
-
-
+# Création du modèle simple
 def create_model_simple(image_size = 64, num_classes=6):
     
     model = Sequential()
@@ -27,40 +21,25 @@ def create_model_simple(image_size = 64, num_classes=6):
     model.add(MaxPooling2D((2, 2)))
     
     model.add(Flatten())
-   
+
     model.add(Dense(512, activation='relu')) 
     model.add(Dense(num_classes, activation="softmax"))  # 6 classes d'émotions différentes
     
-   
-    
     return model
     
 
-def create_model_vgg19(image_size = 64):
+# Création du modèle VGG16
+def create_model_vgg16(image_size = 64, num_classes=6):
     
-    # Charger le modèle VGG19 pré-entraîné avec les poids du jeu de données ImageNet
-    base_model = VGG19(weights='imagenet', include_top=False, input_shape=(image_size, image_size, 3)) 
+    # Charger le modèle VGG16 pré-entraîné avec les poids du jeu de données ImageNet
+    base_model = VGG16(weights='imagenet', include_top=False, input_shape=(image_size, image_size, 3)) 
 
-    x = base_model.output
-    x = GlobalAveragePooling2D()(x)
-
-    x = Dense(128, activation='relu')(x) 
-    predictions = Dense(6, activation='softmax')(x) 
-
-    model = Model(inputs=base_model.input, outputs=predictions)
-
-    for layer in base_model.layers:
-        layer.trainable = False
-
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
+    model = Sequential()
+    
+    # Ajouter le modèle VGG16
+    model.add(Dense(256, activation='relu', input_dim=2*2*512))
+    model.add(Dense(num_classes, activation="softmax"))  # 6 classes d'émotions différentes
+    
+    model.compile(optimizer=optimizers.Adam(learning_rate=3e-4), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    
     return model
-    
-
-
-# Création du modèle simple
-
-#model = create_model_simple()
-
-# Affichage de la structure du modèle
-#model.summary()

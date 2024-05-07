@@ -1,4 +1,6 @@
 import os
+
+# Fonction pour renommer les fichiers d'images dans un répertoire
 def rename_images(directory_path, keyword):
     # Vérifier si le chemin est un dossier
     if not os.path.isdir(directory_path):
@@ -26,7 +28,8 @@ def rename_images(directory_path, keyword):
 
             # Incrémenter le compteur
             i += 1
-            
+
+# Exemple d'utilisation de la fonction pour renommer les fichiers d'images
 emotion = "sad"
 directory_path = "image_project/" + emotion
 rename_images(directory_path, "intermediate_" + emotion + "_")

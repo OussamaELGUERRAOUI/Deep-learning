@@ -4,6 +4,7 @@ from collections import defaultdict
 
 directory_path = "/data/train/angry"
 
+# fonction pour hasher un fichier
 def hash_file(filename):
     hasher = hashlib.sha256()
     with open(filename, 'rb') as f:
@@ -14,6 +15,7 @@ def hash_file(filename):
             hasher.update(data)
     return hasher.hexdigest()
 
+# fonction pour trouver les images dupliquées
 def find_duplicate_images(directory):
     duplicates = defaultdict(list)
     for root, dirs, files in os.walk(directory):
@@ -27,6 +29,7 @@ def find_duplicate_images(directory):
                     print(f"Error reading {filepath}: {e}")
     return {k: v for k, v in duplicates.items() if len(v) > 1}
 
+# fonction pour supprimer les images dupliquées
 def delete_duplicate_images(directory):
     duplicate_images = find_duplicate_images(directory)
     if not duplicate_images:
